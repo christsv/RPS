@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2
+  </title>
+</head>
+
+<body>
+
+  <div id="game">
+
+  </div>
+  <p id="direction"> Press r,p, or s to start playing!</p>
+  <p id="user_score">User Score: 0</p>
+  <p id="comp_score">Comp Score: 0</p>
+  <p id="Ties">Ties:</p>
+
+  <script type="text/javascript">
+
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+
+    // This function is run whenever the user presses a key.
+    var win = 0;
+    var lose = 0;
+    var ties = 0;
+    function tied(){
+        alert("You guys tied!");
+        ties++;
+        document.getElementById("Ties").innerHTML = "Ties: " + ties; 
+      }
+      
+      function won(){
+        alert("You won");
+        win++;
+        document.getElementById("user_score").innerHTML = "User Score: " + win; 
+      }
+      
+      function lost(){
+        alert("You lost");
+        lose++;
+        document.getElementById("comp_score").innerHTML = "Comp Score: " + lose; 
+      }
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+
+   
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+
+      if (userGuess === "r" ) {
+        if (computerGuess === "r"){
+          tied();
+          ties++;
+        }
+        else if (computerGuess === "s"){
+          won();
+        }
+        else {
+          lost();
+        }
+      }
+
+      else if (userGuess ==="p"){
+        if (computerGuess === "r"){
+          won();
+        }
+        else if (computerGuess === "p"){
+          tied();
+        }
+        else {
+          lost();
+        }
+      }
+
+      else{
+        if (computerGuess === "p"){
+          won();
+        }
+        else if (computerGuess === "r"){
+          lost();
+        }
+        else {
+          tied();
+        }
+      }
+      // Alerts the key the user pressed (userGuess).
+      alert("User guess: " + userGuess);
+
+      // Alerts the Computer's guess.
+      alert("Computer guess: " + computerGuess);
+
+    };
+  </script>
+
+</body>
+
+</html>
